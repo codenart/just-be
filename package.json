@@ -1,0 +1,36 @@
+{
+  "name": "just-be",
+  "version": "1.0.0",
+  "description": "It is life itself",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "npx webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codenart/just-be.git"
+  },
+  "keywords": [
+    "life",
+    "just",
+    "be",
+    "now",
+    "javascript",
+    "codenart",
+    "keinart",
+    "zen",
+    "meditation"
+  ],
+  "author": "codenart",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/codenart/just-be/issues"
+  },
+  "homepage": "https://github.com/codenart/just-be#readme",
+  "devDependencies": {
+    "jest": "^22.4.3",
+    "webpack": "^4.6.0",
+    "webpack-cli": "^2.1.2"
+  }
+}
