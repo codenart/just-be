@@ -1,7 +1,7 @@
 # Just Be
 
 It is life itself.  
-It is just.  
+It is ordinary.  
 It is creative.
 
 ## Installation
@@ -77,7 +77,9 @@ console.log(just.value)
 // true
 console.log(just.history)
 // [null, 0, 'word']
+```
 
+```
 just = just.be(0)
 console.log(just.value)
 // true
