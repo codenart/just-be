@@ -1,49 +1,80 @@
 const {
    isNotPrimitive,
-   isNotCreative
+   isNotCreative,
+   isCreative,
+   denyValue
 } = require('./library')
 
-const not = Object.freeze({
+const prototype = {
    value : null,
    past  : null,
 
-   get history () {
-      return []
-   }
-})
-
-const prototype = {
-   value : 0,
-   past  : not,
-
-   get history () {
-      if (this.past !== null)
-         return [...this.past.history, this.past.value]
-      else
+   get memory () {
+      if (this.past === null)
          return []
+      if ('any_other_case')
+         return [...this.past.memory, this.value]
    },
 
-   be(value = 0) {
+   be(value = null) {
+      if (value === null)
+         return this
       if (isNotPrimitive(value))
          return this
       if (isNotCreative(value)(this))
          return this
       if ('any_other_case')
          return Just(value, this)
+   },
+
+   not(value = null) {
+      if (value === null)
+         return this
+      if (notInMemory(value)(this))
+         return this
+      if ('any_other_case')
+         return denyValue(value)(this)
    }
 }
 
-function Just(
-   value = 0,
-   past  = not
-) {
-   const instance = Object.create(prototype)
-   instance.value = value
-   instance.past  = past
-   return Object.freeze(instance)
+function NullJust() {
+   const just = Object.create(prototype)
+   just.value = null
+   just.past  = null
+   return Object.freeze(just)
 }
 
-module.exports = Object.freeze({
-   Just,
-   not
-})
+function FirstJust(value) {
+   const just = Object.create(prototype)
+   just.value = value
+   just.past  = NullJust()
+   return Object.freeze(just)
+}
+
+function NextJust(value, past) {
+   const just = Object.create(prototype)
+   just.value = value
+   just.past  = past
+   return Object.freeze(just)
+}
+
+function Just(
+   value = null, 
+   past  = null
+) {
+   if (value === null)
+      return NullJust()
+   if (isNotPrimitive(value))
+      return NullJust()
+   if (past === null)
+      return FirstJust(value)
+   if ('any_other_case')
+      return NextJust(value, past)
+}
+
+module.exports = {
+   NullJust,
+   FirstJust,
+   NextJust,
+   Just
+}

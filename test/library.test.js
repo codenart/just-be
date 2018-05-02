@@ -1,26 +1,67 @@
-const { Just, not } = require('../src/Just')
+const { Just } = require('../src/Just')
+
 const {
    isNotPrimitive,
-   isNotCreative
+   isNotCreative,
+   notInMemory,
+   denyValue
 } = require('../src/library')
 
 describe('library', () => {
    test('isNotPrimitive', () => {
-      expect(isNotPrimitive(null)).toBe(false)
-      expect(isNotPrimitive(0)).toBe(false)
-      expect(isNotPrimitive('')).toBe(false)
-      expect(isNotPrimitive(true)).toBe(false)
-      expect(isNotPrimitive([])).toBe(true)
-      expect(isNotPrimitive({})).toBe(true)
+      const result0 = isNotPrimitive(0)
+      expect(result0).toBe(false)
+
+      const result1 = isNotPrimitive('')
+      expect(result1).toBe(false)
+
+      const result2 = isNotPrimitive(true)
+      expect(result2).toBe(false)
+
+      const result3 = isNotPrimitive([])
+      expect(result3).toBe(true)
+
+      const result4 = isNotPrimitive({})
+      expect(result4).toBe(true)
    })
 
    test('isNotCreative', () => {
-      const just1 = Just()
+      const just0 = Just('word')
+      const just1 = Just(true, just0)
       const just2 = Just(false, just1)
-      const just3 = Just('', just2)
-      expect(isNotCreative(null)(just3)).toBe(true)
-      expect(isNotCreative(0)(just3)).toBe(true)
-      expect(isNotCreative('')(just3)).toBe(true)
-      expect(isNotCreative(true)(just3)).toBe(false)
+
+      const result0 = isNotCreative('word')(just2)
+      expect(result0).toBe(true)
+
+      const result1 = isNotCreative(true)(just2)
+      expect(result1).toBe(true)
+
+      const result2 = isNotCreative(false)(just2)
+      expect(result2).toBe(true)
+
+      const result3 = isNotCreative(0)(just2)
+      expect(result3).toBe(false)
+   })
+
+   test('notInMemory', () => {
+      const just0 = Just('word')
+      const just1 = Just(true, just0)
+      const just2 = Just(false, just1)
+
+      const result0 = notInMemory(true)(just2)
+      expect(result0).toBe(false)
+
+      const result1 = notInMemory(true)(just0)
+      expect(result1).toBe(true)
+   })
+
+   test('denyValue', () => {
+      const just0 = Just('word')
+      const just1 = Just(true, just0)
+      const just2 = Just(false, just1)
+      const just3 = Just(0, just2)
+
+      const just4 = denyValue(0)(just3)
+      expect(just4).toEqual(just2)
    })
 })
