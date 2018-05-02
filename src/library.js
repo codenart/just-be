@@ -7,9 +7,7 @@ function isNotCreative(value) {
 }
 
 function notInMemory(value) {
-   return function(just) {
-      return ! just.memory.includes(value)
-   }
+   return (just) => ! just.memory.includes(value)
 }
 
 function denyValue(value) {
