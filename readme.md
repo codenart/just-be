@@ -24,12 +24,13 @@ import Just from 'just-be'
 
 ## Usage
 
-When a new just is created, its value is `null` by default.  
+When a new just is created, its value is the value passed in.  
+
 
 ```
-let just = Just()
+let just = Just('word')
 console.log(just.value)
-// null
+// 'word'
 ```
 
 The `value` of `just` cannot be changed directly.  
@@ -38,73 +39,73 @@ And actually it can never changed.
 ```
 just.value = 'something_new'
 console.log(just.value)
-// null
+// 'word'
 ```
 
 Only when the method `.be(value)` is used\_  
 \_it create a new `just` with the new `value`.
 
 ```
-just = just.be(0)
+just = just.be(true)
 console.log(just.value)
-// 0
+// true
 ```
 
 The new `just` itself contains the old instance as its `past`\_  
-\_and ever stored values in `history`.
+\_and ever stored values in `memory`.
 
 ```
 console.log(just.past)
 // the previous `just`
 
-console.log(just.history)
-// [null]
+console.log(just.memory)
+// ['word', true]
 ```
 
 But, a `just` is always ordinary and creative.  
 It only replicates itself if the given `value` is `primitive` and `new`.
 
 ```
-just = just.be('word')
+just = just.be(false)
 console.log(just.value)
-// 'word'
-console.log(just.history)
-// [null, 0]
+// false
+console.log(just.memory)
+// ['word', true, false]
 ```
 
 ```
-just = just.be(0)
+just = just.be(true)
 console.log(just.value)
-// 'word'
-console.log(just.history)
-// [null, 0]
+// false
+console.log(just.memory)
+// ['word', true, false]
 ```
 
 ```
 just = just.be(new Date())
 console.log(just.value)
-// 'word'
-console.log(just.history)
-// [null, 0]
+// false
+console.log(just.memory)
+// ['word', true, false]
 ```
 
 ## Extra
 
-Sometimes, you don't want just to be creative_  
+Sometimes, you don't want `just` to be creative_  
 _it's ok to deny a stored value so it can `be` again.
 
 ```
-just = just.not(0)
+just = just.not('word')
 console.log(just.value)
-// 'word'
-console.log(just.history)
-// [null]
+// false
+console.log(just.memory)
+// [true, false]
 ```
 
 ```
-just = just.be(0)
+just = just.be('word')
 console.log(just.value)
-// 0
-console.log(just.history)
-// [null, 'word']
+// 'word'
+console.log(just.memory)
+// [true, false, 'word']
 ```
