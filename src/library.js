@@ -3,9 +3,7 @@ function isNotPrimitive(value) {
 }
 
 function isNotCreative(value) {
-   return function(just) {
-      return just.memory.includes(value)
-   }
+   return (just) => just.memory.includes(value)
 }
 
 function notInMemory(value) {
@@ -15,7 +13,7 @@ function notInMemory(value) {
 }
 
 function denyValue(value) {
-   return function(just) { 
+   return (just) => { 
       const laterValues = getLaterValues(value)(just)
       const justBeforeThis = rollbackBeforeValue(value)(just)
       const valueReducer = (just, value) => just.be(value)
@@ -24,7 +22,7 @@ function denyValue(value) {
 }
 
 function rollbackBeforeValue(value) {
-   return function(just) {
+   return (just) => {
       if (just.value === value)
          return just.past
       if ('any_other_case')
@@ -33,7 +31,7 @@ function rollbackBeforeValue(value) {
 }
 
 function getLaterValues(value) {
-   return function(just) {
+   return (just) => {
       const indexOfTheValue = just.memory.indexOf(value)
       return just.memory.slice(indexOfTheValue + 1)
    }
