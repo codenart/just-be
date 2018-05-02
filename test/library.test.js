@@ -5,7 +5,7 @@ const {
    isNotCreative,
    notInMemory,
    denyValue
-} = require('../src/library')
+} = require('../src/Library')
 
 describe('library', () => {
    test('isNotPrimitive', () => {

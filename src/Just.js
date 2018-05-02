@@ -3,7 +3,7 @@ const {
    isNotCreative,
    isCreative,
    denyValue
-} = require('./library')
+} = require('./Library')
 
 const prototype = {
    value : null,
@@ -59,7 +59,7 @@ function NextJust(value, past) {
 }
 
 function Just(
-   value = null, 
+   value = null,
    past  = null
 ) {
    if (value === null)
