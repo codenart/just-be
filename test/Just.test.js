@@ -30,7 +30,7 @@ describe('Just', () => {
       const just0 = Just('word')
       const just1 = Just(true, just0)
       const just2 = Just(false, just1)
-      expect(just2.memory).toEqual(['word', true, false])
+      expect(just2.memory).toEqual([ 'word', true, false ])
    })
 
    test('be', () => {
