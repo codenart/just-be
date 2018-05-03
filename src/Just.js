@@ -13,7 +13,7 @@ const prototype = {
       if (this.past === null)
          return []
       if ('any_other_case')
-         return [...this.past.memory, this.value]
+         return [ ...this.past.memory, this.value ]
    },
 
    be(value = null) {
