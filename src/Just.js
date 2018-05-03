@@ -38,21 +38,21 @@ const prototype = {
 }
 
 function NullJust() {
-   const just = Object.create(prototype)
+   let just = Object.create(prototype)
    just.value = null
    just.past  = null
    return Object.freeze(just)
 }
 
 function FirstJust(value) {
-   const just = Object.create(prototype)
+   let just = Object.create(prototype)
    just.value = value
    just.past  = NullJust()
    return Object.freeze(just)
 }
 
 function NextJust(value, past) {
-   const just = Object.create(prototype)
+   let just = Object.create(prototype)
    just.value = value
    just.past  = past
    return Object.freeze(just)

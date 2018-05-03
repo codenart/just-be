@@ -16,9 +16,9 @@ function notInMemory(value) {
 
 function denyValue(value) {
    return function(just) { 
-      const laterValues = getLaterValues(value)(just)
-      const justBeforeThis = rollbackBeforeValue(value)(just)
-      const valueReducer = (just, value) => just.be(value)
+      let laterValues = getLaterValues(value)(just)
+      let justBeforeThis = rollbackBeforeValue(value)(just)
+      let valueReducer = (just, value) => just.be(value)
       return laterValues.reduce(valueReducer, justBeforeThis)
    }
 }
@@ -34,7 +34,7 @@ function rollbackBeforeValue(value) {
 
 function getLaterValues(value) {
    return function(just) {
-      const indexOfTheValue = just.memory.indexOf(value)
+      let indexOfTheValue = just.memory.indexOf(value)
       return just.memory.slice(indexOfTheValue + 1)
    }
 }
