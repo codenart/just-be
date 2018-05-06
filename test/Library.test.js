@@ -1,11 +1,10 @@
 const { Just } = require('../src/Just')
 
-const {
-   isNotPrimitive,
-   isNotCreative,
-   notInMemory,
-   denyValue
-} = require('../src/Library')
+const { isNotPrimitive,
+        isNotCreative,
+        notInMemory,
+        denyValue
+      } = require('../src/Library')
 
 describe('library', () => {
    test('isNotPrimitive', () => {

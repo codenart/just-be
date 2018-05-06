@@ -1,9 +1,8 @@
-const {
-   NullJust,
-   FirstJust,
-   NextJust,
-   Just
-} = require('../src/Just')
+const { NullJust,
+        FirstJust,
+        NextJust,
+        Just
+      } = require('../src/Just')
 
 describe('Just', () => {
    test('constructors', () => {
