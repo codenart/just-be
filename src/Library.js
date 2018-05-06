@@ -1,43 +1,49 @@
-function isNotPrimitive(value) {
-   return value === Object(value)
-}
-
-function isNotCreative(value) {
-   return function(just) {
-      return just.memory.includes(value)
+const isNotPrimitive = 
+   function(value) {
+      return value === Object(value)
    }
-}
 
-function notInMemory(value) {
-   return function(just) {
-      return ! just.memory.includes(value)
+const isNotCreative =
+   function(value) {
+      return function(just) {
+         return just.memory.includes(value)
+      }
    }
-}
 
-function denyValue(value) {
-   return function(just) { 
-      let laterValues = getLaterValues(value)(just)
-      let justBeforeThis = rollbackBeforeValue(value)(just)
-      let valueReducer = (just, value) => just.be(value)
-      return laterValues.reduce(valueReducer, justBeforeThis)
+const notInMemory =
+   function(value) {
+      return function(just) {
+         return ! just.memory.includes(value)
+      }
    }
-}
 
-function rollbackBeforeValue(value) {
-   return function(just) {
-      if (just.value === value)
-         return just.past
-      if ('any_other_case')
-         return rollbackBeforeValue(value)(just.past)
+const denyValue =
+   function(value) {
+      return function(just) { 
+         let laterValues = getLaterValues(value)(just)
+         let justBeforeThis = rollbackBeforeValue(value)(just)
+         let valueReducer = (just, value) => just.be(value)
+         return laterValues.reduce(valueReducer, justBeforeThis)
+      }
    }
-}
 
-function getLaterValues(value) {
-   return function(just) {
-      let indexOfTheValue = just.memory.indexOf(value)
-      return just.memory.slice(indexOfTheValue + 1)
+const rollbackBeforeValue =
+   function(value) {
+      return function(just) {
+         if (just.value === value)
+            return just.past
+         if ('any_other_case')
+            return rollbackBeforeValue(value)(just.past)
+      }
    }
-}
+
+const getLaterValues =
+   function(value) {
+      return function(just) {
+         let indexOfTheValue = just.memory.indexOf(value)
+         return just.memory.slice(indexOfTheValue + 1)
+      }
+   }
 
 module.exports = {
    isNotPrimitive, 
