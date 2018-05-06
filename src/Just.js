@@ -38,43 +38,43 @@ const prototype = {
 }
 
 const NullJust = 
-function() {
-   let just = Object.create(prototype)
-   just.value = null
-   just.past  = null
-   return Object.freeze(just)
-}
+   function() {
+      let just = Object.create(prototype)
+      just.value = null
+      just.past  = null
+      return Object.freeze(just)
+   }
 
 const FirstJust = 
-function(value) {
-   let just = Object.create(prototype)
-   just.value = value
-   just.past  = NullJust()
-   return Object.freeze(just)
-}
+   function(value) {
+      let just = Object.create(prototype)
+      just.value = value
+      just.past  = NullJust()
+      return Object.freeze(just)
+   }
 
 const NextJust = 
-function(value, past) {
-   let just = Object.create(prototype)
-   just.value = value
-   just.past  = past
-   return Object.freeze(just)
-}
+   function(value, past) {
+      let just = Object.create(prototype)
+      just.value = value
+      just.past  = past
+      return Object.freeze(just)
+   }
 
 const Just = 
-function(
-   value = null,
-   past  = null
-) {
-   if (value === null)
-      return NullJust()
-   if (isNotPrimitive(value))
-      return NullJust()
-   if (past === null)
-      return FirstJust(value)
-   if ('any_other_case')
-      return NextJust(value, past)
-}
+   function(
+      value = null,
+      past  = null
+   ) {
+      if (value === null)
+         return NullJust()
+      if (isNotPrimitive(value))
+         return NullJust()
+      if (past === null)
+         return FirstJust(value)
+      if ('any_other_case')
+         return NextJust(value, past)
+   }
 
 module.exports = {
    NullJust,
