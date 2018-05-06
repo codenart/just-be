@@ -37,28 +37,32 @@ const prototype = {
    }
 }
 
-const NullJust = function() {
+const NullJust = 
+function() {
    let just = Object.create(prototype)
    just.value = null
    just.past  = null
    return Object.freeze(just)
 }
 
-const FirstJust = function(value) {
+const FirstJust = 
+function(value) {
    let just = Object.create(prototype)
    just.value = value
    just.past  = NullJust()
    return Object.freeze(just)
 }
 
-const NextJust = function(value, past) {
+const NextJust = 
+function(value, past) {
    let just = Object.create(prototype)
    just.value = value
    just.past  = past
    return Object.freeze(just)
 }
 
-const Just = function(
+const Just = 
+function(
    value = null,
    past  = null
 ) {
