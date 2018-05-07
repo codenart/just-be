@@ -1,9 +1,10 @@
 const Just = require('./index')
 
-test(
-   'production', 
+const testIndex =
    () =>
-      { let just = Just()
+      { let just = null
+        // --
+        just = Just()
         expect(just.value).toBe(null)
         expect(just.memory).toEqual([])
         // --
@@ -11,4 +12,5 @@ test(
         expect(just.value).toBe('word')
         expect(just.memory).toEqual([ 'word' ])
       }
-)
+
+test('just', testIndex)
