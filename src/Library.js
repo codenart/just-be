@@ -1,31 +1,31 @@
-'use strict'
+const Just = require('./Just')
 
 const isNotPrimitive = 
-   (value) =>
+   (value = null) =>
       { return value === Object(value) }
 
 const isNotCreative = 
-   (value) =>
-   (just) =>
+   (value = null) =>
+   (just = Just()) =>
       { return just.memory.includes(value) }
 
 const notInMemory = 
-   (value) =>
-   (just) =>
+   (value = null) =>
+   (just = Just()) =>
       { return ! just.memory.includes(value) }
 
 const denyValue = 
-   (value) =>
-   (just) =>
+   (value = null) =>
+   (just = Just()) =>
       { let laterValues = getLaterValues(value)(just)
         let justBeforeThis = rollbackBeforeValue(value)(just)
-        let valueReducer = (just, value) => just.be(value)
-        return laterValues.reduce(valueReducer, justBeforeThis)
+        let beReducer = (just, value) => just.be(value)
+        return laterValues.reduce(beReducer, justBeforeThis)
       }
 
 const rollbackBeforeValue = 
-   (value) =>
-   (just) =>
+   (value = null) =>
+   (just = Just()) =>
       { if (just.value === value)
            return just.past
         if ('any_other_case')
@@ -33,8 +33,8 @@ const rollbackBeforeValue =
       }
 
 const getLaterValues = 
-   (value) =>
-   (just) =>
+   (value = null) =>
+   (just = Just()) =>
       { let indexOfTheValue = just.memory.indexOf(value)
         return just.memory.slice(indexOfTheValue + 1)
       }

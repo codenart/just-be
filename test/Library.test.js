@@ -25,9 +25,9 @@ describe('library', () => {
    })
 
    test('isNotCreative', () => {
-      let just0 = Just('word')
-      let just1 = Just(true, just0)
-      let just2 = Just(false, just1)
+      let just0 = Just('word')(null)
+      let just1 = Just(true)(just0)
+      let just2 = Just(false)(just1)
 
       let result0 = isNotCreative('word')(just2)
       expect(result0).toBe(true)
@@ -43,9 +43,9 @@ describe('library', () => {
    })
 
    test('notInMemory', () => {
-      let just0 = Just('word')
-      let just1 = Just(true, just0)
-      let just2 = Just(false, just1)
+      let just0 = Just('word')(null)
+      let just1 = Just(true)(just0)
+      let just2 = Just(false)(just1)
 
       let result0 = notInMemory(true)(just2)
       expect(result0).toBe(false)
@@ -55,10 +55,10 @@ describe('library', () => {
    })
 
    test('denyValue', () => {
-      let just0 = Just('word')
-      let just1 = Just(true, just0)
-      let just2 = Just(false, just1)
-      let just3 = Just(0, just2)
+      let just0 = Just('word')(null)
+      let just1 = Just(true)(just0)
+      let just2 = Just(false)(just1)
+      let just3 = Just(0)(just2)
 
       let just4 = denyValue(0)(just3)
       expect(just4).toEqual(just2)

@@ -1,5 +1,5 @@
 const { Just } = require('./src/Just')
 
 module.exports = 
-   (value) =>
-      { return Just(value) }
+   (value = null) =>
+      { return Just(value)(null) }
