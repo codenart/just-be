@@ -24,7 +24,7 @@ import Just from 'just-be'
 
 ## Usage
 
-When a new just is created, its value is the value passed in.  
+When a new `just` is created, its `value` is the value passed in.  
 
 
 ```
@@ -63,7 +63,8 @@ console.log(just.memory)
 ```
 
 But, a `just` is always ordinary and creative.  
-It only replicates itself if the given `value` is `primitive` and `new`.
+It only replicates itself if the given `value` is\_  
+\_ `primitive` and `new`.
 
 ```
 just = just.be(false)
@@ -91,8 +92,8 @@ console.log(just.memory)
 
 ## Extra
 
-Sometimes, you don't want `just` to be creative_  
-_it's ok to deny a stored value so it can `be` again.
+Sometimes, you don't want `just` to be creative\_  
+\_it's ok to deny a stored value so it can `be` again.
 
 ```
 just = just.not('word')
