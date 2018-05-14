@@ -33,7 +33,7 @@ console.log(just.value)
 // 'word'
 ```
 
-The `value` of `just` cannot be changed directly.  
+The `value` of `just` cannot be changed directly;  
 And actually it can never changed.  
 
 ```
@@ -43,7 +43,7 @@ console.log(just.value)
 ```
 
 Only when the method `.be(value)` is used\_  
-\_it create a new `just` with the new `value`.
+\_it creates a new `just` with the new `value`.
 
 ```
 just = just.be(true)
