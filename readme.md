@@ -26,7 +26,6 @@ import Just from 'just-be'
 
 When a new `just` is created, its `value` is the value passed in.  
 
-
 ```
 let just = Just('word')
 console.log(just.value)
